@@ -121,7 +121,6 @@
         /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
-            /* Aquí se actualizó la imagen de fondo con wallpapper.avif */
             background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), url('wallpapper.avif') center/cover;
             display: flex;
             align-items: center;
@@ -195,6 +194,7 @@
         /* --- ABOUT & FAQ --- */
         .about-faq { padding: 5rem 5%; background: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
         .about-img { border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        .gyg-badge { margin: 1.5rem 0; display: block; }
         details { background: var(--light); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; cursor: pointer; border: 1px solid #e2e8f0; }
         details p { margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem; }
 
@@ -305,8 +305,8 @@
                         <span><i class="fas fa-subway"></i> Subway</span>
                     </div>
                     <h3 class="tour-title">Taipei City Highlights</h3>
-                    <p class="tour-desc">Visit Taipei 101, Chiang Kai-shek Memorial Hall, Longshan Temple and Ximending with me.</p>
-                    <div class="tour-price">$33 USD / 1050 NTD</div>
+                    <p class="tour-desc">Visit Taipei 101, Chiang Kai-shek Memorial Hall, Ximending and Longshan Temple with me.</p>
+                    <div class="tour-price">$69 USD / 2150 NTD</div>
                     <a href="#booking" class="btn btn-primary">Reserve Spot</a>
                 </div>
             </div>
@@ -320,7 +320,7 @@
                     </div>
                     <h3 class="tour-title">Night Market Food Tour</h3>
                     <p class="tour-desc">Taste Taipei’s best street food at Raohe, Ningxia, and Shilin Night Markets — from stinky tofu to Michelin Bib Gourmand snacks and bubble tea.</p>
-                    <div class="tour-price">$33 USD / 1050 NTD</div>
+                    <div class="tour-price">$69 USD / 2150 NTD</div>
                     <a href="#booking" class="btn btn-primary">Reserve Spot</a>
                 </div>
             </div>
@@ -334,7 +334,7 @@
                     </div>
                     <h3 class="tour-title">Cycling Riverside & City</h3>
                     <p class="tour-desc">Ride along the beautiful Tamsui River, exploring hidden alleys, historic Dihua Street, Xingtian Temple, Fortune Telling Street, Dadaocheng, Ximending, and Longshan Temple.</p>
-                    <div class="tour-price">$33 USD / 1050 NTD</div>
+                    <div class="tour-price">$69 USD / 2150 NTD</div>
                     <a href="#booking" class="btn btn-primary">Reserve Spot</a>
                 </div>
             </div>
@@ -445,8 +445,15 @@
             <h2>Hi, I'm Ariel</h2>
             <p class="section-subtitle" style="text-align: left; margin-bottom: 1.5rem;">Your Tour Guide</p>
             <img src="fotoariel.png" alt="Ariel Maidana" class="about-img">
-            <p style="margin-bottom: 1rem;">I'm originally from Argentina, where I got my bachelor's degree and worked in banking for five years. Seeking new adventures, I moved to St. Petersburg, Russia, to complete my master's degree, and in September 2025, my journey brought me to Taipei to study Chinese.</p>
-            <p>As an international student and traveler, I know what it's like to arrive in a new city. I'm excited to share my discoveries with you and help you experience the vibrant culture, food, and life of Taipei. Come join me for a walk or a bike ride, and let's explore together!</p>
+            
+            <div class="gyg-badge">
+                <a href="https://www.getyourguide.com/-s736113" target="_blank">
+                    <img src="https://gyg.me/kUtga42u" width="160px" height="auto" style="border: 1px solid #c6c8d0" alt="GetYourGuide | Taipei Tours" />
+                </a>
+            </div>
+
+            <p style="margin-bottom: 1rem;">I'm originally from Argentina, where I completed my bachelor's degree and worked in banking for five years. My passion for adventure led me to St. Petersburg, Russia, to earn my master's degree, and eventually to Taipei, where I am currently dedicated to mastering Chinese.</p>
+            <p>As an international student and traveler, I understand the excitement and challenges of arriving in a new place. I'm thrilled to share the hidden gems I've discovered and help you experience the vibrant culture, food, and urban life of Taipei. Let’s explore this amazing city together on a walk or a bike ride!</p>
         </div>
         
         <div>
