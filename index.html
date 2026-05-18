@@ -155,16 +155,19 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             transition: var(--transition);
         }
         .tour-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .tour-img { height: 200px; width: 100%; object-fit: cover; }
-        .tour-content { padding: 1.5rem; }
+        .tour-img { height: 220px; width: 100%; object-fit: cover; }
+        .tour-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .tour-meta { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;}
         .tour-title { font-size: 1.3rem; margin-bottom: 0.5rem; }
         .tour-desc { font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-main); }
-        .tour-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
-        .tour-card .btn { width: 100%; }
+        .tour-actions { display: flex; flex-direction: column; gap: 1rem; align-items: center; margin-top: auto; }
+        .tour-actions .btn { width: 100%; }
 
         /* --- WHY A LOCAL SECTION --- */
         .why-us { padding: 5rem 5%; background-color: var(--dark); color: var(--white); }
@@ -182,7 +185,6 @@
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; }
         .form-control { width: 100%; padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; }
         .form-control:focus { outline: none; border-color: var(--primary); }
-        .urgency { text-align: center; color: #ef4444; font-weight: 600; margin-top: 1.5rem; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
 
         /* --- GALLERY --- */
         .gallery { padding: 5rem 5%; background: var(--light); }
@@ -297,60 +299,62 @@
         <p class="section-subtitle">Hand-crafted routes to show you the real Taipei.</p>
         
         <div class="tours-grid">
+            
             <div class="tour-card">
                 <img src="20260113_153347.jpg" alt="Taipei City Highlights" class="tour-img">
                 <div class="tour-content">
-                    <div class="tour-meta">
-                        <span><i class="far fa-clock"></i> 4 Hours</span>
-                        <span><i class="fas fa-subway"></i> Subway</span>
+                    <div>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 5 Hours</span>
+                            <span><i class="fas fa-walking"></i> Walking</span>
+                        </div>
+                        <h3 class="tour-title">Taipei City Highlights</h3>
+                        <p class="tour-desc">Visit Taipei 101, Chiang Kai-shek Memorial Hall, Ximending and Longshan Temple with me.</p>
                     </div>
-<h3 class="tour-title">Taipei City Highlights</h3>
-<p class="tour-desc">Visit Taipei 101, Chiang Kai-shek Memorial Hall, Ximending and Longshan Temple with me.</p>
-<div class="tour-price">$69 USD / 2150 NTD</div>
-<a href="taipei-city-highlights.html" class="btn btn-primary">Ver Detalles</a>
+                    <div class="tour-actions">
+                        <a href="taipei-city-highlights.html" class="btn btn-primary">See Page Details</a>
+                        
+                        <a href="https://www.getyourguide.com/taipei-city-l190/taipei-city-highlights-4-hour-private-tour-of-top-icons-t1270922/"><div style="position: relative; width: fit-content"><img src="https://gyg.me/pQw3KK9K" width="160px" height="auto" style="border: 1px solid #c6c8d0; border-radius: 8px;" alt="GetYourGuide | Taipei City Highlights: 5-Hour Private Walking Tour"/><p style="position: absolute; font-size: 0.5rem; font-weight: 500; color: #000000; font-family: Arial, sans-serif; z-index: 999; margin: 0 auto; right: 0.2rem; top: 0.2rem; width: 60%; text-align: left; line-height: 1.1;">Taipei City Highlights: 5-Hour Private Walking Tour</p></div></a>
+                    </div>
+                </div>
             </div>
             
             <div class="tour-card">
-                <img src="20260327_193817(0).jpg" alt="Night Market Food Tour" class="tour-img">
+                <img src="20251203_193616.jpg" alt="Taipei Private Tour: Heights, Heritage & Local Life" class="tour-img">
                 <div class="tour-content">
-                    <div class="tour-meta">
-                        <span><i class="far fa-clock"></i> 4 Hours</span>
-                        <span><i class="fas fa-subway"></i> Subway</span>
+                    <div>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> 5 Hours</span>
+                            <span><i class="fas fa-hiking"></i> Mixed Option</span>
+                        </div>
+                        <h3 class="tour-title">Heights, Heritage & Local Life</h3>
+                        <p class="tour-desc">Explore Elephant Mountain panorama or Taipei 101 engineering, then discover deep cultural roots at Dihua Street and finish at a vibrant local market.</p>
                     </div>
-                    <h3 class="tour-title">Night Market Food Tour</h3>
-                    <p class="tour-desc">Taste Taipei’s best street food at Raohe, Ningxia, and Shilin Night Markets — from stinky tofu to Michelin Bib Gourmand snacks and bubble tea.</p>
-                    <div class="tour-price">$69 USD / 2150 NTD</div>
-                    <a href="#booking" class="btn btn-primary">Reserve Spot</a>
-                </div>
-            </div>
-
-            <div class="tour-card">
-                <img src="20260327_182015.jpg" alt="Cycling Taipei Experience" class="tour-img">
-                <div class="tour-content">
-                    <div class="tour-meta">
-                        <span><i class="far fa-clock"></i> 4 Hours</span>
-                        <span><i class="fas fa-bicycle"></i> Active</span>
+                    <div class="tour-actions">
+                        <a href="taipei-heights-heritage.html" class="btn btn-primary">See Page Details</a>
+                        
+                        <a href="https://www.getyourguide.com/taipei-city-l190/experience-taipei-heights-heritage-local-life-t1323122/"><div style="position: relative; width: fit-content"><img src="https://gyg.me/pQw3KK9K" width="160px" height="auto" style="border: 1px solid #c6c8d0; border-radius: 8px;" alt="GetYourGuide | Taipei Private Tour: Heights, Heritage & Local Life"/><p style="position: absolute; font-size: 0.5rem; font-weight: 500; color: #000000; font-family: Arial, sans-serif; z-index: 999; margin: 0 auto; right: 0.2rem; top: 0.2rem; width: 60%; text-align: left; line-height: 1.1;">Taipei Private Tour: Heights, Heritage & Local Life</p></div></a>
                     </div>
-                    <h3 class="tour-title">Cycling Riverside & City</h3>
-                    <p class="tour-desc">Ride along the beautiful Tamsui River, exploring hidden alleys, historic Dihua Street, Xingtian Temple, Fortune Telling Street, Dadaocheng, Ximending, and Longshan Temple.</p>
-                    <div class="tour-price">$69 USD / 2150 NTD</div>
-                    <a href="#booking" class="btn btn-primary">Reserve Spot</a>
                 </div>
             </div>
 
             <div class="tour-card">
                 <img src="20260220_142907.jpg" alt="Custom Private Tour" class="tour-img">
                 <div class="tour-content">
-                    <div class="tour-meta">
-                        <span><i class="far fa-clock"></i> Flexible</span>
-                        <span><i class="fas fa-sliders-h"></i> Customizable</span>
+                    <div>
+                        <div class="tour-meta">
+                            <span><i class="far fa-clock"></i> Flexible</span>
+                            <span><i class="fas fa-sliders-h"></i> Customizable</span>
+                        </div>
+                        <h3 class="tour-title">Custom Private Tour</h3>
+                        <p class="tour-desc">Designed at your request. Whether you want a half-day walking tour, a comprehensive bicycle experience, or multi-day city itineraries, we will build it together.</p>
                     </div>
-                    <h3 class="tour-title">Custom Private Tour</h3>
-                    <p class="tour-desc">Designed at your request. Whether you want a half-day, full-day, or multiple-day tour, we will build the perfect itinerary together.</p>
-                    <div class="tour-price">Price TBD</div>
-                    <a href="#booking" class="btn btn-primary">Reserve Spot</a>
+                    <div class="tour-actions" style="width: 100%;">
+                        <a href="#booking" class="btn btn-primary">Contact to Customize</a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -417,8 +421,7 @@
                     <select name="Tour" class="form-control" required>
                         <option value="">Choose a tour...</option>
                         <option value="Taipei City Highlights">Taipei City Highlights</option>
-                        <option value="Night Market Food Tour">Night Market Food Tour</option>
-                        <option value="Cycling Riverside & City">Cycling Riverside & City</option>
+                        <option value="Taipei Private Tour: Heights, Heritage & Local Life">Heights, Heritage & Local Life</option>
                         <option value="Custom Private Tour">Custom Private Tour</option>
                     </select>
                 </div>
