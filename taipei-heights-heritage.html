@@ -52,19 +52,87 @@
         /* --- MAIN LAYOUT --- */
         .tour-container { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
         .tour-content section { margin-bottom: 3rem; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        
-        /* --- IMAGE GALLERY --- */
-        .image-gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 1rem; 
-            margin-bottom: 2rem; 
+        /* --- LARGE MANUAL PHOTO SLIDER --- */
+        .tour-photo-slider {
+            margin-bottom: 2rem;
         }
-        .image-gallery img {
+
+        .slider-viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+            background: var(--dark);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.45s ease;
+            will-change: transform;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: clamp(360px, 55vw, 650px);
+            position: relative;
+            margin: 0;
+        }
+
+        .gallery-slide img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 0;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            z-index: 3;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .slider-prev { left: 1rem; }
+        .slider-next { right: 1rem; }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 1rem;
+        }
+
+        .slider-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            border: none;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            width: 34px;
+            background: var(--primary);
         }
 
         /* --- QUICK INFO --- */
@@ -116,6 +184,21 @@
             .sidebar { position: static; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
+
+
+        @media (max-width: 900px) {
+            .gallery-slide { height: clamp(300px, 68vw, 460px); }
+        }
+
+        @media (max-width: 600px) {
+            .tour-header h1 { font-size: 2rem; }
+            .tour-container { padding: 2rem 5%; }
+            .tour-content section { padding: 1.4rem; }
+            .gallery-slide { height: 300px; }
+            .slider-btn { width: 38px; height: 38px; }
+            .slider-prev { left: 0.6rem; }
+            .slider-next { right: 0.6rem; }
+        }
     </style>
 </head>
 <body>
@@ -128,20 +211,42 @@
     </nav>
 
     <header class="tour-header">
-        <h1>Taipei Private Tour: Heights, Heritage & Local Life</h1>
+        <h1>Taipei Private Tour: Skyline Views, Museums & Local Life</h1>
         <p>Explore Taipei on a guided tour with options for a sunset and night market visit. Discover the city's history, culture, and food scene as you visit iconic landmarks and hidden gems.</p>
     </header>
 
     <main class="tour-container">
         
         <div class="tour-content">
-            
-            <div class="image-gallery">
-                <img src="WhatsApp Image 2026-05-15 at 22.33.45.png" alt="Taipei Skyline - Taipei Tour">
-                <img src="WhatsApp Image 2026-05-15 at 22.19.56.png" alt="Taipei Street View - Taipei Tour">
-                <img src="WhatsApp Image 2026-05-15 at 22.26.54.png" alt="Heritage Site - Taipei Tour">
-                <img src="WhatsApp Image 2026-05-14 at 20.21.23.png" alt="Local Life Taipei">
-                <img src="WhatsApp Image 2026-05-15 at 22.17.08.png" alt="Dihua Street Taipei">
+            <div class="tour-photo-slider" aria-label="Tour photo gallery">
+                <div class="slider-viewport">
+                    <div class="slider-track">
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp Image 2026-05-15 at 22.33.45.png" alt="Taipei Skyline - Taipei Tour">
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp Image 2026-05-15 at 22.19.56.png" alt="Taipei Street View - Taipei Tour">
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp Image 2026-05-15 at 22.26.54.png" alt="Heritage Site - Taipei Tour">
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp Image 2026-05-14 at 20.21.23.png" alt="Local Life Taipei">
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp Image 2026-05-15 at 22.17.08.png" alt="Dihua Street Taipei">
+                        </figure>
+                    </div>
+
+                    <button class="slider-btn slider-prev" type="button" aria-label="Previous photo">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn slider-next" type="button" aria-label="Next photo">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="slider-dots" aria-label="Choose photo"></div>
             </div>
 
             <section>
@@ -281,9 +386,9 @@
                 
                 <a href="https://www.getyourguide.com/taipei-city-l190/experience-taipei-heights-heritage-local-life-t1323122/" target="_blank">
                     <div style="position: relative; width: fit-content; margin: 0 auto;">
-                        <img src="https://gyg.me/pQw3KK9K" width="160px" height="auto" style="border: 1px solid #c6c8d0; border-radius: 8px;" alt="GetYourGuide | Taipei Private Tour: Heights, Heritage & Local Life"/>
+                        <img src="https://gyg.me/pQw3KK9K" width="160px" height="auto" style="border: 1px solid #c6c8d0; border-radius: 8px;" alt="GetYourGuide | Taipei Private Tour: Skyline Views, Museums & Local Life"/>
                         <p style="position: absolute; font-size: 0.45rem; font-weight: 500; color: #000000; font-family: Arial, sans-serif; z-index: 999; margin: 0 auto; right: 0.2rem; top: 0.2rem; width: 60%; text-align: left; line-height: 1.2;">
-                            Taipei Private Tour: Heights, Heritage & Local Life
+                            Taipei Private Tour: Skyline Views, Museums & Local Life
                         </p>
                     </div>
                 </a>
@@ -330,6 +435,76 @@
     <a href="https://wa.me/79939576041" target="_blank" class="float-btn float-wa" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+
+    <script>
+        // Large manual photo slider: no automatic movement
+        const tourSlider = document.querySelector('.tour-photo-slider');
+
+        if (tourSlider) {
+            const track = tourSlider.querySelector('.slider-track');
+            const slides = Array.from(tourSlider.querySelectorAll('.gallery-slide'));
+            const prevBtn = tourSlider.querySelector('.slider-prev');
+            const nextBtn = tourSlider.querySelector('.slider-next');
+            const dotsContainer = tourSlider.querySelector('.slider-dots');
+            let currentSlide = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+                dot.addEventListener('click', () => showSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
+
+            function showSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('active', dotIndex === currentSlide);
+                    dot.setAttribute('aria-current', dotIndex === currentSlide ? 'true' : 'false');
+                });
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            tourSlider.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') nextSlide();
+                if (event.key === 'ArrowLeft') prevSlide();
+            });
+
+            tourSlider.addEventListener('touchstart', (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            tourSlider.addEventListener('touchend', (event) => {
+                touchEndX = event.changedTouches[0].screenX;
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (Math.abs(swipeDistance) > 45) {
+                    swipeDistance < 0 ? nextSlide() : prevSlide();
+                }
+            }, { passive: true });
+
+            tourSlider.setAttribute('tabindex', '0');
+            showSlide(0);
+        }
+    </script>
 
 </body>
 </html>
