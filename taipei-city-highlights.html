@@ -53,7 +53,7 @@
         .tour-container { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
         .tour-content section { margin-bottom: 3rem; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         
-        /* --- LARGE RUNNING PHOTO SLIDER --- */
+        /* --- LARGE MANUAL PHOTO SLIDER --- */
         .tour-photo-slider {
             margin-bottom: 2rem;
         }
@@ -231,35 +231,27 @@
                     <div class="slider-track">
                         <figure class="gallery-slide">
                             <img src="20260113_153347.png" alt="Chiang Kai-shek Memorial Hall - Taipei Tour">
-                            <figcaption>Chiang Kai-shek Memorial Hall</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="20251203_193616.png" alt="Taipei 101 at night - Taipei Tour">
-                            <figcaption>Taipei 101 and the city skyline</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="WhatsApp%20Image%202026-04-08%20at%2000.22.16%20(1)%20(1).png" alt="Taipei City Highlights">
-                            <figcaption>Taipei city highlights</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="WhatsApp%20Image%202026-04-13%20at%2022.59.19.png" alt="Taipei Street View - Taipei Tour">
-                            <figcaption>Local streets and city atmosphere</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="20250915_163600.png" alt="Liberty Square Gate - Taipei Tour">
-                            <figcaption>Liberty Square</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="WhatsApp%20Image%202026-04-13%20at%2022.05.34.png" alt="Longshan Temple interior - Taipei Tour">
-                            <figcaption>Longshan Temple interior</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="WhatsApp%20Image%202026-04-13%20at%2022.04.52.png" alt="Longshan Temple entrance - Taipei Tour">
-                            <figcaption>Longshan Temple entrance</figcaption>
                         </figure>
                         <figure class="gallery-slide">
                             <img src="WhatsApp%20Image%202026-05-01%20at%2017.39.09.png" alt="Taipei Tour Highlights">
-                            <figcaption>More moments from the tour</figcaption>
                         </figure>
                     </div>
 
@@ -442,8 +434,9 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+
     <script>
-        // Large auto-running photo slider
+        // Large manual photo slider
         const tourSlider = document.querySelector('.tour-photo-slider');
 
         if (tourSlider) {
@@ -453,17 +446,15 @@
             const nextBtn = tourSlider.querySelector('.slider-next');
             const dotsContainer = tourSlider.querySelector('.slider-dots');
             let currentSlide = 0;
-            let sliderTimer;
+            let touchStartX = 0;
+            let touchEndX = 0;
 
             slides.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.className = 'slider-dot';
                 dot.type = 'button';
                 dot.setAttribute('aria-label', `Show photo ${index + 1}`);
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                    restartAutoSlide();
-                });
+                dot.addEventListener('click', () => showSlide(index));
                 dotsContainer.appendChild(dot);
             });
 
@@ -487,36 +478,28 @@
                 showSlide(currentSlide - 1);
             }
 
-            function startAutoSlide() {
-                sliderTimer = setInterval(nextSlide, 4200);
-            }
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
 
-            function stopAutoSlide() {
-                clearInterval(sliderTimer);
-            }
+            // Optional manual mobile swipe support
+            tourSlider.addEventListener('touchstart', (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
 
-            function restartAutoSlide() {
-                stopAutoSlide();
-                startAutoSlide();
-            }
+            tourSlider.addEventListener('touchend', (event) => {
+                touchEndX = event.changedTouches[0].screenX;
+                const swipeDistance = touchEndX - touchStartX;
 
-            nextBtn.addEventListener('click', () => {
-                nextSlide();
-                restartAutoSlide();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                prevSlide();
-                restartAutoSlide();
-            });
-
-            tourSlider.addEventListener('mouseenter', stopAutoSlide);
-            tourSlider.addEventListener('mouseleave', startAutoSlide);
-            tourSlider.addEventListener('focusin', stopAutoSlide);
-            tourSlider.addEventListener('focusout', startAutoSlide);
+                if (Math.abs(swipeDistance) > 50) {
+                    if (swipeDistance < 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            }, { passive: true });
 
             showSlide(0);
-            startAutoSlide();
         }
     </script>
 
