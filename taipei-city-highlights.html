@@ -53,18 +53,99 @@
         .tour-container { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
         .tour-content section { margin-bottom: 3rem; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         
-        /* --- IMAGE GALLERY --- */
-        .image-gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 1rem; 
-            margin-bottom: 2rem; 
+        /* --- LARGE RUNNING PHOTO SLIDER --- */
+        .tour-photo-slider {
+            margin-bottom: 2rem;
         }
-        .image-gallery img {
+
+        .slider-viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+            background: var(--dark);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s ease;
+            will-change: transform;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: clamp(360px, 55vw, 650px);
+            position: relative;
+            margin: 0;
+        }
+
+        .gallery-slide img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 0;
+        }
+
+        .gallery-slide figcaption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 3rem 1.5rem 1.2rem;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0));
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            z-index: 3;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .slider-prev { left: 1rem; }
+        .slider-next { right: 1rem; }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 1rem;
+        }
+
+        .slider-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            border: none;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            width: 34px;
+            background: var(--primary);
         }
 
         /* --- QUICK INFO --- */
@@ -112,6 +193,18 @@
             .tour-container { grid-template-columns: 1fr; }
             .sidebar { position: static; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .gallery-slide { height: clamp(300px, 68vw, 460px); }
+        }
+
+        @media (max-width: 600px) {
+            .tour-header h1 { font-size: 2rem; }
+            .tour-container { padding: 2rem 5%; }
+            .tour-content section { padding: 1.4rem; }
+            .gallery-slide { height: 300px; }
+            .gallery-slide figcaption { font-size: 0.85rem; padding: 2.5rem 1rem 1rem; }
+            .slider-btn { width: 38px; height: 38px; }
+            .slider-prev { left: 0.6rem; }
+            .slider-next { right: 0.6rem; }
         }
     </style>
 </head>
@@ -133,15 +226,52 @@
         
         <div class="tour-content">
             
-            <div class="image-gallery">
-                <img src="20260113_153347.png" alt="Chiang Kai-shek Memorial Hall - Taipei Tour">
-                <img src="20251203_193616.png" alt="Taipei 101 at night - Taipei Tour">
-                <img src="WhatsApp%20Image%202026-04-08%20at%2000.22.16%20(1)%20(1).png" alt="Taipei City Highlights">
-                <img src="WhatsApp%20Image%202026-04-13%20at%2022.59.19.png" alt="Taipei Street View - Taipei Tour">
-                <img src="20250915_163600.png" alt="Liberty Square Gate - Taipei Tour">
-                <img src="WhatsApp%20Image%202026-04-13%20at%2022.05.34.png" alt="Longshan Temple interior - Taipei Tour">
-                <img src="WhatsApp%20Image%202026-04-13%20at%2022.04.52.png" alt="Longshan Temple entrance - Taipei Tour">
-                <img src="WhatsApp%20Image%202026-05-01%20at%2017.39.09.png" alt="Taipei Tour Highlights">
+            <div class="tour-photo-slider" aria-label="Tour photo gallery">
+                <div class="slider-viewport">
+                    <div class="slider-track">
+                        <figure class="gallery-slide">
+                            <img src="20260113_153347.png" alt="Chiang Kai-shek Memorial Hall - Taipei Tour">
+                            <figcaption>Chiang Kai-shek Memorial Hall</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="20251203_193616.png" alt="Taipei 101 at night - Taipei Tour">
+                            <figcaption>Taipei 101 and the city skyline</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp%20Image%202026-04-08%20at%2000.22.16%20(1)%20(1).png" alt="Taipei City Highlights">
+                            <figcaption>Taipei city highlights</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp%20Image%202026-04-13%20at%2022.59.19.png" alt="Taipei Street View - Taipei Tour">
+                            <figcaption>Local streets and city atmosphere</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="20250915_163600.png" alt="Liberty Square Gate - Taipei Tour">
+                            <figcaption>Liberty Square</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp%20Image%202026-04-13%20at%2022.05.34.png" alt="Longshan Temple interior - Taipei Tour">
+                            <figcaption>Longshan Temple interior</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp%20Image%202026-04-13%20at%2022.04.52.png" alt="Longshan Temple entrance - Taipei Tour">
+                            <figcaption>Longshan Temple entrance</figcaption>
+                        </figure>
+                        <figure class="gallery-slide">
+                            <img src="WhatsApp%20Image%202026-05-01%20at%2017.39.09.png" alt="Taipei Tour Highlights">
+                            <figcaption>More moments from the tour</figcaption>
+                        </figure>
+                    </div>
+
+                    <button class="slider-btn slider-prev" type="button" aria-label="Previous photo">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn slider-next" type="button" aria-label="Next photo">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="slider-dots" aria-label="Choose photo"></div>
             </div>
 
             <section>
@@ -298,7 +428,7 @@
             </div>
         </div>
         <div class="copyright">
-            © 2026 Taipei Tours by Ariel Maidana. All rights reserved.
+            © 2026 Taipei Tours. All rights reserved.
         </div>
     </footer>
 
@@ -311,6 +441,84 @@
     <a href="https://wa.me/79939576041" target="_blank" class="float-btn float-wa" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+        // Large auto-running photo slider
+        const tourSlider = document.querySelector('.tour-photo-slider');
+
+        if (tourSlider) {
+            const track = tourSlider.querySelector('.slider-track');
+            const slides = Array.from(tourSlider.querySelectorAll('.gallery-slide'));
+            const prevBtn = tourSlider.querySelector('.slider-prev');
+            const nextBtn = tourSlider.querySelector('.slider-next');
+            const dotsContainer = tourSlider.querySelector('.slider-dots');
+            let currentSlide = 0;
+            let sliderTimer;
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                    restartAutoSlide();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
+
+            function showSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('active', dotIndex === currentSlide);
+                    dot.setAttribute('aria-current', dotIndex === currentSlide ? 'true' : 'false');
+                });
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startAutoSlide() {
+                sliderTimer = setInterval(nextSlide, 4200);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(sliderTimer);
+            }
+
+            function restartAutoSlide() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                restartAutoSlide();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                restartAutoSlide();
+            });
+
+            tourSlider.addEventListener('mouseenter', stopAutoSlide);
+            tourSlider.addEventListener('mouseleave', startAutoSlide);
+            tourSlider.addEventListener('focusin', stopAutoSlide);
+            tourSlider.addEventListener('focusout', startAutoSlide);
+
+            showSlide(0);
+            startAutoSlide();
+        }
+    </script>
 
 </body>
 </html>
