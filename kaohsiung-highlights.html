@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Taipei: Kaohsiung Highlights by High-Speed Train | Taipei Tours</title>
+    <meta name="description" content="Explore Kaohsiung on a private guided day trip from Taipei by high-speed train. Visit Lotus Pond, Cijin Island, and Kaohsiung Lighthouse.">
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #F59E0B;
+            --primary-hover: #D97706;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            --wa-color: #25D366;
+            --tg-color: #0088cc;
+            --ig-color: #E1306C;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { color: var(--text-main); background-color: var(--light); line-height: 1.6; }
+        img { max-width: 100%; display: block; border-radius: 10px; }
+        a { text-decoration: none; color: inherit; }
+        h1, h2, h3, h4 { color: var(--dark); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+
+        /* --- BUTTONS --- */
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); border: none; text-align: center; }
+        .btn-primary { background-color: var(--primary); color: var(--white); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+
+        /* --- NAVBAR --- */
+        nav { background-color: var(--white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--dark); letter-spacing: 1px; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--text-main); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- TOUR HEADER --- */
+        .tour-header { padding: 4rem 5%; background: var(--dark); color: var(--white); text-align: center; }
+        .tour-header h1 { color: var(--white); font-size: 2.5rem; margin-bottom: 1rem; }
+        .tour-header p { font-size: 1.1rem; max-width: 850px; margin: 0 auto; color: #cbd5e1; }
+
+        /* --- MAIN LAYOUT --- */
+        .tour-container { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+        .tour-content section { margin-bottom: 3rem; background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+
+        /* --- LARGE MANUAL PHOTO SLIDER --- */
+        .tour-photo-slider { margin-bottom: 2rem; }
+
+        .slider-viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+            background: var(--dark);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.45s ease;
+            will-change: transform;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: clamp(380px, 55vw, 680px);
+            position: relative;
+            margin: 0;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .gallery-slide figcaption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 3rem 1.5rem 1.2rem;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0));
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            z-index: 3;
+        }
+
+        .slider-btn:hover { background: var(--primary); color: var(--white); }
+        .slider-prev { left: 1rem; }
+        .slider-next { right: 1rem; }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 1rem;
+        }
+
+        .slider-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            border: none;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            width: 34px;
+            background: var(--primary);
+        }
+
+        /* --- QUICK INFO --- */
+        .quick-info { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+        .info-badge { display: flex; align-items: center; gap: 0.5rem; background: var(--light); padding: 0.8rem 1.2rem; border-radius: 10px; font-weight: 500; font-size: 0.95rem; }
+        .info-badge i { color: var(--primary); font-size: 1.2rem; }
+
+        /* --- LISTS --- */
+        ul.custom-list { list-style: none; }
+        ul.custom-list li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.8rem; }
+        ul.custom-list li i { margin-top: 5px; }
+        .fa-check-circle { color: var(--wa-color); }
+        .fa-times-circle { color: #ef4444; }
+        .places-list { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+        .place-pill { background: var(--light); color: var(--text-main); padding: 0.55rem 0.9rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid #e2e8f0; }
+
+        /* --- TIMELINE --- */
+        .timeline { border-left: 3px solid var(--primary); padding-left: 2rem; margin-left: 1rem; margin-top: 2rem; }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -39px; top: 0; width: 16px; height: 16px; background: var(--white); border: 4px solid var(--primary); border-radius: 50%; }
+        .timeline-time { font-weight: 600; color: var(--primary); margin-bottom: 0.3rem; }
+        .timeline-title { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+        .timeline-desc { font-size: 0.95rem; color: var(--text-muted); }
+
+        /* --- SIDEBAR --- */
+        .sidebar { position: sticky; top: 100px; align-self: start; }
+        .booking-card { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid var(--primary); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--dark); color: var(--white); padding: 4rem 5% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; align-items: center; }
+        .footer-col-center { text-align: center; }
+        .footer-col h4 { margin-bottom: 1.5rem; color: var(--primary); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; color: #cbd5e1; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #94a3b8; }
+
+        /* --- FLOATING BUTTONS --- */
+        .float-btn { position: fixed; bottom: 20px; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--white); box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; transition: var(--transition); }
+        .float-wa { right: 20px; background-color: var(--wa-color); }
+        .float-tg { right: 20px; bottom: 90px; background-color: var(--tg-color); }
+        .float-ig { right: 20px; bottom: 160px; background-color: var(--ig-color); }
+        .float-btn:hover { transform: scale(1.1); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .tour-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .gallery-slide { height: clamp(300px, 68vw, 460px); }
+        }
+
+        @media (max-width: 600px) {
+            .tour-header h1 { font-size: 2rem; }
+            .tour-container { padding: 2rem 5%; }
+            .tour-content section { padding: 1.4rem; }
+            .gallery-slide { height: 320px; }
+            .gallery-slide figcaption { font-size: 0.85rem; padding: 2.5rem 1rem 1rem; }
+            .slider-btn { width: 38px; height: 38px; }
+            .slider-prev { left: 0.6rem; }
+            .slider-next { right: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Taipei<span>Tours</span></a>
+        <div class="nav-links">
+            <a href="index.html#tours"><i class="fas fa-arrow-left"></i> Back to All Tours</a>
+        </div>
+    </nav>
+
+    <header class="tour-header">
+        <h1>From Taipei: Kaohsiung Highlights by High-Speed Train</h1>
+        <p>Explore Kaohsiung on a private guided day trip from Taipei by high-speed train. Visit Lotus Pond’s iconic temples, take a short ferry ride to Cijin Island, and enjoy panoramic harbor views.</p>
+    </header>
+
+    <main class="tour-container">
+
+        <div class="tour-content">
+
+            <div class="tour-photo-slider" aria-label="Kaohsiung tour photo gallery">
+                <div class="slider-viewport">
+                    <div class="slider-track">
+                        <figure class="gallery-slide">
+                            <img src="templo_mejorado_3000x4000.png" alt="Kaohsiung Lotus Pond temple view">
+                        </figure>
+                    </div>
+
+                    <button class="slider-btn slider-prev" type="button" aria-label="Previous photo">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn slider-next" type="button" aria-label="Next photo">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="slider-dots" aria-label="Choose photo"></div>
+            </div>
+
+            <section>
+                <h2>About this activity</h2>
+                <div class="quick-info">
+                    <div class="info-badge"><i class="far fa-clock"></i> Full-day tour</div>
+                    <div class="info-badge"><i class="fas fa-train"></i> HSR + MRT + Ferry</div>
+                    <div class="info-badge"><i class="fas fa-user-tie"></i> Live tour guide</div>
+                    <div class="info-badge"><i class="fas fa-language"></i> English, Spanish, Russian</div>
+                    <div class="info-badge"><i class="fas fa-users"></i> Private group</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>What you will do</h2>
+                <ul class="custom-list">
+                    <li><i class="fas fa-star" style="color: var(--primary);"></i> Travel across Taiwan effortlessly from Taipei to Kaohsiung by high-speed rail</li>
+                    <li><i class="fas fa-star" style="color: var(--primary);"></i> Explore the serene Kaohsiung Confucian Temple and its traditional style</li>
+                    <li><i class="fas fa-star" style="color: var(--primary);"></i> Marvel at the colossal Xuantian Shangdi and the Dragon and Tiger Pagodas</li>
+                    <li><i class="fas fa-star" style="color: var(--primary);"></i> Take a short ferry ride to Cijin Island and explore its vibrant old street</li>
+                    <li><i class="fas fa-star" style="color: var(--primary);"></i> Capture panoramic views from the historic Kaohsiung Lighthouse</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Full Description</h2>
+                <p style="margin-bottom: 1rem;">Meet your guide at Taipei Main Station and board the high-speed train south to Kaohsiung. After arriving at Zuoying Station, begin your exploration with a scenic walk toward Lotus Pond, entering from its northern shore.</p>
+                <p style="margin-bottom: 1rem;">Your lakeside route starts at the peaceful Kaohsiung Confucius Temple, one of Taiwan’s largest Confucian temple complexes, known for its elegant traditional architecture. Continue south to the Yuandi Temple Beiji Pavilion, where a towering statue of the Taoist deity Xuantian Shangdi rises dramatically over the water. Then visit the Spring and Autumn Pavilions, famous for their colorful shrines and the statue of Guanyin riding a dragon.</p>
+                <p style="margin-bottom: 1rem;">Conclude your Lotus Pond walk at the iconic Dragon and Tiger Pagodas, where entering through the dragon’s mouth and exiting through the tiger’s mouth is said to bring good fortune. Along the way, enjoy time for photos and learn about the spiritual, cultural, and architectural meaning of these lakeside landmarks.</p>
+                <p style="margin-bottom: 1rem;">Next, walk to the nearest metro station and travel toward Kaohsiung’s harbor district. After a short walk to the ferry pier, take a brief ferry ride to Cijin Island, a historic seaside neighborhood known for its old street, seafood culture, and relaxed coastal atmosphere. Enjoy free time for lunch at your own expense before strolling by the island’s unique black sand beach.</p>
+                <p style="margin-bottom: 1rem;">Continue up to the historic Kaohsiung Lighthouse, one of the best places to enjoy panoramic views of the harbor, shipping port, city skyline, and coastline. Afterward, take the ferry back to the mainland and return by metro to Zuoying Station, where you will board the high-speed train back to Taipei.</p>
+                <p>This private guided day tour is designed to connect Kaohsiung’s temples, harbor culture, seaside atmosphere, and panoramic views in one smooth journey using high-speed train, metro, ferry, and walking.</p>
+
+                <h3 style="margin-top: 1.8rem;">Places visited or seen</h3>
+                <div class="places-list">
+                    <span class="place-pill">Lotus Pond</span>
+                    <span class="place-pill">Kaohsiung Confucius Temple</span>
+                    <span class="place-pill">Yuandi Temple Beiji Pavilion</span>
+                    <span class="place-pill">Spring and Autumn Pavilions</span>
+                    <span class="place-pill">Dragon and Tiger Pagodas</span>
+                    <span class="place-pill">Cijin Island</span>
+                    <span class="place-pill">Cijin Old Street</span>
+                    <span class="place-pill">Kaohsiung Lighthouse</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Itinerary</h2>
+                <p style="margin-bottom: 1.5rem;"><em>For reference only. Itineraries are subject to change based on train schedule, weather, and local conditions.</em></p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">Starting Location</div>
+                        <div class="timeline-title">Taipei Main Station Tourist Service Center</div>
+                        <div class="timeline-desc">Meet your guide on the 1st Floor near the West Gate.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Train • 2 hours</div>
+                        <div class="timeline-title">Taipei to Kaohsiung by High-Speed Rail</div>
+                        <div class="timeline-desc">Travel south to Zuoying Station and begin the Kaohsiung portion of the tour.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">2 hours 30 minutes</div>
+                        <div class="timeline-title">Lotus Pond Scenic Area</div>
+                        <div class="timeline-desc">Photo stops, visits, guided tour, sightseeing, and walking along the lakeside route.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">30 minutes</div>
+                        <div class="timeline-title">Kaohsiung City Temple of Confucius</div>
+                        <div class="timeline-desc">Sightseeing, walking, photo stop, visit, and guided cultural explanation.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">30 minutes</div>
+                        <div class="timeline-title">Yuandi Temple Beiji Pavilion</div>
+                        <div class="timeline-desc">Photo stop, visit, guided tour, walking, and sightseeing around the Xuantian Shangdi statue.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">30 minutes</div>
+                        <div class="timeline-title">Spring and Autumn Pavilions</div>
+                        <div class="timeline-desc">Photo stop, visit, guided tour, sightseeing, and walking.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">30 minutes</div>
+                        <div class="timeline-title">Dragon and Tiger Pagodas</div>
+                        <div class="timeline-desc">Walking, visit, guided tour, photo stop, and cultural explanation.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Subway / Metro • 50 minutes</div>
+                        <div class="timeline-title">Travel to Kaohsiung Harbor District</div>
+                        <div class="timeline-desc">Metro transfer and short walk toward the ferry pier.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">20 minutes</div>
+                        <div class="timeline-title">Gushan Ferry Pier Station</div>
+                        <div class="timeline-desc">Photo stop, visit, guided tour, sightseeing, and walk to the ferry.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">1 hour 30 minutes</div>
+                        <div class="timeline-title">Qi Jin Old Street</div>
+                        <div class="timeline-desc">Photo stop, visit, guided tour, free time, sightseeing, and walk. Lunch is at your own expense.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">30 minutes</div>
+                        <div class="timeline-title">Kaohsiung Lighthouse</div>
+                        <div class="timeline-desc">Guided tour, photo stop, visit, sightseeing, and panoramic harbor views.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">20 minutes</div>
+                        <div class="timeline-title">Cijin Ferry</div>
+                        <div class="timeline-desc">Short ferry crossing back to the mainland.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Metro • 40 minutes</div>
+                        <div class="timeline-title">Return to Zuoying Station</div>
+                        <div class="timeline-desc">Travel back by metro to board the high-speed train to Taipei.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Train • 1 hour 40 minutes</div>
+                        <div class="timeline-title">Kaohsiung to Taipei</div>
+                        <div class="timeline-desc">Return by high-speed train.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">Finish At</div>
+                        <div class="timeline-title">Taipei Main Station Tourist Service Center</div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div>
+                    <h2>Included</h2>
+                    <ul class="custom-list">
+                        <li><i class="fas fa-check-circle"></i> Professional trilingual guide: English, Spanish, and Russian</li>
+                        <li><i class="fas fa-check-circle"></i> High-Speed Rail, Kaohsiung Metro, and ferry transportation during the tour</li>
+                        <li><i class="fas fa-check-circle"></i> Guided walking tour around Lotus Pond with cultural explanations</li>
+                        <li><i class="fas fa-check-circle"></i> Guided visits to Kaohsiung Confucian Temple, Beiji Pavilion, Spring and Autumn Pavilions, and Dragon and Tiger Pagodas</li>
+                        <li><i class="fas fa-check-circle"></i> Guided ferry crossing to Cijin Island and stroll along Cijin Old Street</li>
+                        <li><i class="fas fa-check-circle"></i> Scenic guided walk up to Kaohsiung Lighthouse for panoramic harbor views</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Not Included</h2>
+                    <ul class="custom-list">
+                        <li><i class="fas fa-times-circle"></i> Food and drinks during the tour</li>
+                        <li><i class="fas fa-times-circle"></i> Personal expenses, shopping, or souvenirs</li>
+                        <li><i class="fas fa-times-circle"></i> Gratuities for the guide, optional but appreciated</li>
+                        <li><i class="fas fa-times-circle"></i> Hotel pickup and drop-off</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Meeting Point & Important Info</h2>
+
+                <h4 style="margin-top: 1.5rem; color: var(--primary);">Meeting Point</h4>
+                <p>We will meet at the <strong>Taipei Main Station Tourist Service Center</strong>, located on the 1st Floor near the West Gate. This central area is easy to locate and is just a short walk from the HSR boarding gates on the B1 level. Your guide will contact you via WhatsApp or Line to coordinate the meeting before the start time.</p>
+                <a href="https://maps.app.goo.gl/nyR3LX6MjBU6rqTK8" target="_blank" style="color: #3b82f6; text-decoration: underline; margin-top: 10px; display: inline-block;">Open in Google Maps <i class="fas fa-external-link-alt"></i></a>
+
+                <h4 style="margin-top: 1.5rem; color: var(--primary);">What to bring</h4>
+                <ul class="custom-list" style="margin-bottom: 1rem;">
+                    <li><i class="fas fa-shoe-prints" style="color: var(--text-muted);"></i> Comfortable walking shoes</li>
+                    <li><i class="fas fa-tshirt" style="color: var(--text-muted);"></i> Comfortable clothes</li>
+                    <li><i class="fas fa-sun" style="color: var(--text-muted);"></i> Sun protection</li>
+                    <li><i class="fas fa-umbrella" style="color: var(--text-muted);"></i> A small umbrella in case of rain</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; color: var(--primary);">Know before you go</h4>
+                <ul class="custom-list">
+                    <li><i class="fas fa-info-circle" style="color: var(--text-muted);"></i> The tour begins and ends at Taipei Main Station.</li>
+                    <li><i class="fas fa-info-circle" style="color: var(--text-muted);"></i> This full-day walking tour requires a moderate level of physical fitness.</li>
+                    <li><i class="fas fa-info-circle" style="color: var(--text-muted);"></i> High-Speed Rail, Kaohsiung Metro, and Cijin ferry fares during the tour are included in the price.</li>
+                </ul>
+            </section>
+
+        </div>
+
+        <aside class="sidebar">
+            <div class="booking-card">
+                <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem; font-size: 0.95rem;">Check availability and book now!</p>
+
+                <a href="https://www.getyourguide.com/kaohsiung-taiwan-l214915/taipei-to-kaohsiung-highlights-private-day-tour-t1352094/" target="_blank">
+                    <div style="position: relative; width: fit-content; margin: 0 auto;">
+                        <img src="https://gyg.me/pQw3KK9K" width="160px" height="auto" style="border: 1px solid #c6c8d0; border-radius: 8px;" alt="GetYourGuide | From Taipei: Kaohsiung Highlights by High-Speed Train"/>
+                        <p style="position: absolute; font-size: 0.5rem; font-weight: 500; color: #000000; font-family: Arial, sans-serif; z-index: 999; margin: 0 auto; right: 0.2rem; top: 0.2rem; width: 60%; text-align: left; line-height: 1.1;">
+                            From Taipei: Kaohsiung Highlights by High-Speed Train
+                        </p>
+                    </div>
+                </a>
+
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 1.5rem 0;">
+
+                <h4>Have questions?</h4>
+                <a href="https://wa.me/79939576041" target="_blank" class="btn" style="background-color: var(--wa-color); color: white; width: 100%; padding: 0.8rem; margin-top: 0.5rem;">
+                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                </a>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-col-center">
+                <a href="#" class="logo" style="font-size: 2.2rem; color: var(--white);">Taipei<span style="color: var(--primary);">Tours</span></a>
+                <p style="margin-top: 1rem; color: #94a3b8; max-width: 300px; margin-left: auto; margin-right: auto;">Experience the true spirit of Taiwan with an enthusiastic expat.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Me</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> arielmaidana1997@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +886 973 253 468</li>
+                    <li><i class="fab fa-whatsapp"></i> +7 993 957 6041 (WhatsApp)</li>
+                    <li><i class="fab fa-telegram"></i> @armaidana (Telegram)</li>
+                    <li><i class="fab fa-instagram"></i> @taipei.tours (Instagram)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Taipei Tours. All rights reserved.
+        </div>
+    </footer>
+
+    <a href="https://www.instagram.com/taipei.tours/" target="_blank" class="float-btn float-ig" title="Follow on Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://t.me/armaidana" target="_blank" class="float-btn float-tg" title="Chat on Telegram">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+    <a href="https://wa.me/79939576041" target="_blank" class="float-btn float-wa" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Large manual photo slider: no automatic movement
+        const tourSlider = document.querySelector('.tour-photo-slider');
+
+        if (tourSlider) {
+            const track = tourSlider.querySelector('.slider-track');
+            const slides = Array.from(tourSlider.querySelectorAll('.gallery-slide'));
+            const prevBtn = tourSlider.querySelector('.slider-prev');
+            const nextBtn = tourSlider.querySelector('.slider-next');
+            const dotsContainer = tourSlider.querySelector('.slider-dots');
+            let currentSlide = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+                dot.addEventListener('click', () => showSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
+
+            function showSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('active', dotIndex === currentSlide);
+                    dot.setAttribute('aria-current', dotIndex === currentSlide ? 'true' : 'false');
+                });
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            tourSlider.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') nextSlide();
+                if (event.key === 'ArrowLeft') prevSlide();
+            });
+
+            tourSlider.addEventListener('touchstart', (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            tourSlider.addEventListener('touchend', (event) => {
+                touchEndX = event.changedTouches[0].screenX;
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (Math.abs(swipeDistance) > 45) {
+                    swipeDistance < 0 ? nextSlide() : prevSlide();
+                }
+            }, { passive: true });
+
+            tourSlider.setAttribute('tabindex', '0');
+            showSlide(0);
+        }
+    </script>
+
+</body>
+</html>
